@@ -13,6 +13,8 @@ DEB_MAKE_CHECK_TARGET = test
 
 ifeq ($(shell (dpkg-architecture -qDEB_BUILD_ARCH | egrep -q "amd64") && echo "yes"),yes)
 	DEB_CMAKE_EXTRA_FLAGS += -Dbuild_doc=ON
+else
+	DEB_CMAKE_EXTRA_FLAGS += -Dbuild_doc=OFF
 endif
 
 CC=/usr/bin/clang 
