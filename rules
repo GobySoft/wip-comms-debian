@@ -11,7 +11,9 @@ DEB_CMAKE_EXTRA_FLAGS = -Denable_testing=ON -Dbuild_sandbox=ON -DCMAKE_C_FLAGS="
 
 DEB_MAKE_CHECK_TARGET = test
 
-DEB_CMAKE_EXTRA_FLAGS += -Dbuild_doc=ON
+ifeq ($(shell (dpkg-architecture -qDEB_BUILD_ARCH | egrep -q "amd64") && echo "yes"),yes)
+	DEB_CMAKE_EXTRA_FLAGS += -Dbuild_doc=ON
+endif
 
 CC=/usr/bin/clang 
 CXX=/usr/bin/clang++
